@@ -21,7 +21,7 @@
 - 3-5. login(userId, password) 메소드를 호출하여 로그인 절차를 진행한다. 입력된 비밀번호와 저장된 암호화된 비밀번호를 비교한다.
 - 3-6. 실명인증에 실패한 경우, retryRequestSignIn()로 실명인증 재시도가 유도된다.
 
-&nbsp;&nbsp;&nbsp;**[기존 회원인 경우]**
+&nbsp;&nbsp;&nbsp;[기존 회원인 경우]
 - 3-7. 기존 회원인 경우 login(userId, password)로 로그인 요청이 전송되고 다음 단계로 진행한다.
 
 4️⃣ **권한 확인 및 접근 제어 절차**<br>
