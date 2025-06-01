@@ -13,7 +13,7 @@
 
 3️⃣**로그인 절차**<br>
 
-&nbsp;&nbsp;&nbsp;**[비회원인 경우]**
+&nbsp;&nbsp;&nbsp;**[비회원인 경우]** <br>
 - 3-1. 사용자가 등록된 회원이 아닌 경우, 시스템은 goToSignInPage() 메소드를 호출하여 회원가입 페이지로 이동시킨다.
 - 3-2. 사용자는 회원가입 요청을 보낸다. (requestSignIn())
 - 3-3. verifyRealName(userId, authInfo) 메서드를 호출하여 사용자의 실명인증 절차를 진행한다.
@@ -29,11 +29,11 @@
 - 4-2. getPermissions()으로 권한 조회를 진행한다.
 - 4-3. getType() 메소드로 사용자의 권한 유형을 결정한다.
 
-&nbsp;&nbsp;&nbsp;[학생권한인 경우]<br>
+&nbsp;&nbsp;&nbsp;**[학생권한인 경우]** <br>
 - 4-4. checkAccess()를 통해 커뮤니티 게시판 접근이 허용된다.
 - 4-5. manageContent()를 통해 글 작성, 댓글 작성/수정/삭제 등이 가능해진다.
 
-&nbsp;&nbsp;&nbsp;[관리자 권한인 경우]<br>
+&nbsp;&nbsp;&nbsp;**[관리자 권한인 경우]** <br>
 - 4-6. allowAdminAccess()로 관리자 권한이 부여된다.
 - 4-7. useAdminFunctions()를 통해 게시판 관리, 공지 등록 등의 기능의 사용이 가능해진다.
 
