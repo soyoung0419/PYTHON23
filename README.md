@@ -35,7 +35,6 @@
 
 &nbsp;&nbsp;&nbsp;[관리자 권한인 경우]<br>
 - 4-5. allowAdminAccess()로 관리자 권한이 부여된다.
-
 - 4-6. useAdminFunctions()를 통해 게시판 관리, 공지 등록 등의 기능의 사용이 가능해진다.
 
 5️⃣로그아웃 절차<br>
