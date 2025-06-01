@@ -7,16 +7,17 @@
 - 1-2. 커뮤니티 메뉴를 선택한다. → `selectCommunityMenu()`*
 - 1-3. `requestBoardAccess()`를 통해 게시판 접근을 요청한다.
 - 1-4. 게시판을 선택한다. → `selectBoard()`
-- 1-5. `getPostList()`를 호출하여 해당 게시판의 게시글 인덱스를 최신순으로 10개 받아온다.
+- 1-5. 게시글 목록을 받아오기 위해  `getPostList()`를 호출한다. 가장 최근에 작성된 Post를 우선하여 순차적으로 반환한다.
+
 
 2️⃣ **게시글 읽기** <br>
 - 2-1. 사용자가 특정 게시글을 선택한다. → `selectPost()`
 - 2-2. 게시글의 세부 정보를 조회한다.
 
 &nbsp;&nbsp;&nbsp;[게시글 기본 정보 조회] <br>
-- `getTitle()` → 게시글 제목 조회  
-- `getDate()` → 작성 날짜 조회  
-- `getContent()` → 본문 내용 조회
+- `getTitle()`로 게시글 제목을 조회한다.
+- `getDate()`로 게시글 작성 날짜를 조회한다.
+- `getContent()`로 본문 내용을 조회한다.
 
 &nbsp;&nbsp;&nbsp;[첨부파일 여부 확인 및 정보 조회] <br>
 - `isFile()` → 첨부파일 존재 여부 판단  
