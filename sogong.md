@@ -1,10 +1,10 @@
 ## 게시글 작성 시퀀스 다이어그램
 
 
-1. 게시판 목록 불러오기 
-1-1. 사용자가 웹 브라우저를 통해 홈페이지에 접속한다. enterHomepage()*
-1-2. 커뮤니티 메뉴를 선택한다. selectCommunityMenu()
-1-3. WebBrowser는 게시판 접근을 위해 requestBoardAccess()를 CommunityService에 요청한다. 
+1️⃣**게시판 목록 불러오기** 
+- 1-1. 사용자가 웹 브라우저를 통해 홈페이지에 접속한다. enterHomepage()*
+- 1-2. 커뮤니티 메뉴를 선택한다. selectCommunityMenu()
+- 1-3. WebBrowser는 게시판 접근을 위해 requestBoardAccess()를 CommunityService에 요청한다. 
 1-4. 게시판을 선택한다. selectBoard()
 1-5. 게시글 목록을 받아오기 위해 AuthService를 통해 getPostList()를 호출한다. 가장 최근에 작성된 Post를 우선하여 순차적으로 반환한다.
 
