@@ -13,28 +13,19 @@
 
 - 2-2. 내부적으로 existsById(userId)를 호출하여 데이터베이스에서 주어진 UserId를 가진 User의 존재 여부를 확인한다.
 
-<3. 로그인 절차>
-[비회원의 경우]
-3-1.
-사용자가 등록된 회원이 아닌 경우,
-시스템은 goToSignInPage() 메소드를 호출하여 회원가입 페이지로 이동시킨다.
+3️⃣로그인 절차
+[비회원의 경우]<br>
+- 3-1. 사용자가 등록된 회원이 아닌 경우, 시스템은 goToSignInPage() 메소드를 호출하여 회원가입 페이지로 이동시킨다.
 
-3-2.
-사용자는 회원가입 요청을 보낸다. (requestSignIn())
+- 3-2. 사용자는 회원가입 요청을 보낸다. (requestSignIn())
 
-3-3.
-AuthService는 verifyRealName(userId, authInfo) 메서드를 호출하여  사용자의 실명인증 절차를 진행한다.
+- 3-3. AuthService는 verifyRealName(userId, authInfo) 메서드를 호출하여 사용자의 실명인증 절차를 진행한다.
 
-3-4.
-인증에 성공하면, signInUser(userInfo)를 통해 사용자 계정이 생성되며, 자동으로 로그인 절차로 이어진다.
+- 3-4. 인증에 성공하면, signInUser(userInfo)를 통해 사용자 계정이 생성되며, 자동으로 로그인 절차로 이어진다.
 
-3-5.
-(login(userId, password)) 메소드를 호출하여 로그인 절차를 진행한다.
-입력된 비밀번호와 저장된 암호화된 비밀번호를 비교한다.
+- 3-5. login(userId, password) 메소드를 호출하여 로그인 절차를 진행한다. 입력된 비밀번호와 저장된 암호화된 비밀번호를 비교한다.
 
-3-6.
-실명인증에 실패한 경우,
-retryRequestSignIn()로 실명인증 재시도가 유도된다.
+- 3-6. 실명인증에 실패한 경우, retryRequestSignIn()로 실명인증 재시도가 유도된다.
 
 [기존 회원인 경우]
 3-7.
