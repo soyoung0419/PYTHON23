@@ -36,12 +36,12 @@
   
 - 4-2. getPermissions()으로 권한 조회를 진행하고, getType() 메소드로 사용자의 권한 유형을 결정한다.
 
-&nbsp;&nbsp;&nbsp;[학생권한]인 경우<br>
+&nbsp;&nbsp;&nbsp;[학생권한인 경우]<br>
 - 4-3. checkAccess()를 통해 커뮤니티 게시판 접근이 허용된다.
 
 - 4-4. manageContent()를 통해 글 작성, 댓글 작성/수정/삭제 등이 가능해진다.
 
-&nbsp;&nbsp;&nbsp;[관리자 권한]인 경우<br>
+&nbsp;&nbsp;&nbsp;[관리자 권한인 경우]<br>
 - 4-5. allowAdminAccess()로 관리자 권한이 부여된다.
 
 - 4-6. useAdminFunctions()를 통해 게시판 관리, 공지 등록 등의 기능의 사용이 가능해진다.
