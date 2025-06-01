@@ -18,7 +18,7 @@
 - 3-2. 사용자는 회원가입 요청을 보낸다. (requestSignIn())
 - 3-3. verifyRealName(userId, authInfo) 메서드를 호출하여 사용자의 실명인증 절차를 진행한다.
 - 3-4. 인증에 성공하면, signInUser(userInfo)를 통해 사용자 계정이 생성되며, 자동으로 로그인 절차로 이어진다.
-- 3-5. login(userId, password) 메소드를 호출하여 로그인 절차를 진행한다. 입력된 비밀번호와 저장된 암호화된 비밀번호를 비교한다.
+- 3-5. login(userId, password) 메소드를 호출하여 로그인 절차를 진행한다. 
 - 3-6. 실명인증에 실패한 경우, retryRequestSignIn()로 실명인증 재시도가 유도된다.
 
 &nbsp;&nbsp;&nbsp;[기존 회원인 경우]
