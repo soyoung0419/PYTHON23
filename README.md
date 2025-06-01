@@ -14,7 +14,7 @@
 
 3️⃣로그인 절차<br>
 
-&nbsp;&nbsp;&nbsp;[IF]비회원인 경우<br>
+&nbsp;&nbsp;&nbsp;[비회원인 경우]<br>
 - 3-1. 사용자가 등록된 회원이 아닌 경우, 시스템은 goToSignInPage() 메소드를 호출하여 회원가입 페이지로 이동시킨다.
 - 3-2. 사용자는 회원가입 요청을 보낸다. (requestSignIn())
 - 3-3. AuthService는 verifyRealName(userId, authInfo) 메서드를 호출하여 사용자의 실명인증 절차를 진행한다.
