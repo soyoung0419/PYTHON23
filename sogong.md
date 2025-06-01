@@ -19,13 +19,15 @@
   -  `getDate()`로 게시글 작성 날짜를 조회한다.
   -  `getContent()`로 본문 내용을 조회한다.
 
-&nbsp;&nbsp;&nbsp;[첨부파일 여부 확인 및 정보 조회] <br>
-- `isFile()` → 첨부파일 존재 여부 판단  
-- `getFileList()` → 첨부파일 인덱스 리스트 반환  
-- `getName()` → 파일 이름 조회  
-- `getSize()` → 파일 용량 조회  
-- `getViewerIndex()` → 뷰어 인덱스 조회
-
+- 2-4. [첨부파일 여부 확인] <br>
+  - `isFile()`로 첨부파일 여부를 판단한다.
+    
+- 2-5. [첨부파일 정보를 조회]
+  - getFileList()로 파일 인덱스 리스트를 반환한다.
+  - getName()으로 파일 이름을 조회한다. 
+  - getSize()으로 파일 용량을 조회한다. 
+  - getViewerIndex()로 파일 형식에 적합한 파일 뷰어 인덱스를 가져온다.
+    
 &nbsp;&nbsp;&nbsp;[댓글 조회] <br>
 - `getCommentList()` → 댓글 목록 반환
 
