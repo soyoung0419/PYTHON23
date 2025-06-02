@@ -13,7 +13,7 @@
 • 2-1. 사용자가 특정 게시글을 선택한다. → selectPost()  
 • 2-2. 게시글의 세부 정보를 조회한다.  
 
-• 2-3. [게시글 기본 정보 조회] <br>  
+• 2-3. [게시글 기본 정보 조회] 
 &nbsp;&nbsp;&nbsp;• getTitle()로 게시글 제목을 조회한다.  
 &nbsp;&nbsp;&nbsp;• getDate()로 게시글 작성 날짜를 조회한다.  
 &nbsp;&nbsp;&nbsp;• getContent()로 본문 내용을 조회한다.  
