@@ -18,7 +18,7 @@
 &nbsp;&nbsp;&nbsp;• getDate()로 게시글 작성 날짜를 조회한다.  
 &nbsp;&nbsp;&nbsp;• getContent()로 본문 내용을 조회한다.  
 
-• 2-4. [첨부파일 여부 확인]<br>  
+• 2-4. [첨부파일 여부 확인]<br> 
 &nbsp;&nbsp;&nbsp;• isFile()로 첨부파일 여부를 판단한다.  
 
 • 2-5. [첨부파일 정보를 조회]<br>  
