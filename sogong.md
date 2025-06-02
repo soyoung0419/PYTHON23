@@ -27,7 +27,7 @@
 &nbsp;&nbsp;&nbsp;• getSize()으로 파일 용량을 조회한다.  
 &nbsp;&nbsp;&nbsp;• getViewerIndex()로 파일 형식에 적합한 파일 뷰어 인덱스를 가져온다.  
 
-• 2-6. [댓글 조회]<br>  
+• 2-6. [댓글 조회]<br> 
 &nbsp;&nbsp;&nbsp;• getCommentList()로 해당 게시글의 모든 댓글 리스트를 반환한다.
 
 
