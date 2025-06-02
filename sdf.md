@@ -32,7 +32,7 @@
 • 4-5. manageContent()*를 통해 글 작성, 댓글 작성/수정/삭제 등이 가능해진다.
 
 &nbsp;[관리자 권한일 경우] <br>
-• 4-6. allowAdminAccess()*로 관리자 권한이 부여된다.
+• 4-6. allowAdminAccess()*로 관리자 권한이 부여된다.<br>
 • 4-7. useAdminFunctions()*를 통해 게시판 관리, 공지 등록 등의 기능의 사용이 가능해진다.
 
 ### 5. **로그아웃 절차**<br>
