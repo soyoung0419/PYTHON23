@@ -14,7 +14,7 @@
 • 2-2. 게시글의 세부 정보를 조회한다.  
 
 • 2-3. [게시글 기본 정보 조회] <br>
-  - getTitle()로 게시글 제목을 조회한다.  
+• getTitle()로 게시글 제목을 조회한다.  
   • getDate()로 게시글 작성 날짜를 조회한다.  
   • getContent()로 본문 내용을 조회한다.
 
@@ -43,11 +43,11 @@
 ### 4. **파일 업로드 처리** <br>
 • 4-1. 사용자가 파일을 업로드하면, WebBrowser가 uploadFile()을 호출한다.  
 • 4-2. CommunityService는 File DB에 파일 정보를 저장한다.  
-  • addSize()로 파일 크기를 저장한다.  
-  • addType()으로 파일 형식을 저장한다.  
-  • addUploadDate()로 파일 업로드 시간을 저장한다.  
-  • setViewerIndex()로 파일 형식 기반 뷰어 인덱스를 설정한다.  
-  • appendFileList()로 파일리스트에 첨부파일을 추가한다.
+&nbsp;&nbsp;&nbsp;• addSize()로 파일 크기를 저장한다.  
+&nbsp;&nbsp;&nbsp;• addType()으로 파일 형식을 저장한다.  
+&nbsp;&nbsp;&nbsp;• addUploadDate()로 파일 업로드 시간을 저장한다.  
+&nbsp;&nbsp;&nbsp;• setViewerIndex()로 파일 형식 기반 뷰어 인덱스를 설정한다.  
+&nbsp;&nbsp;&nbsp;• appendFileList()로 파일리스트에 첨부파일을 추가한다.
 
 ### 5. **댓글 작성 및 삭제** <br>
 
