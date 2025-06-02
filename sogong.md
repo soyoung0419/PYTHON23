@@ -37,8 +37,8 @@
 • 3-4. addTitle(), addContent()로 사용자가 입력한 제목 및 본문을 저장한다.  
 
 • 3-5. [첨부파일 정보 저장] <br>
-  • addFileIndex()로 첨부파일 인덱스를 생성한다.  
-  • addFileTitle()로 파일의 이름을 DB에 저장한다.
+&nbsp;&nbsp;&nbsp;• addFileIndex()로 첨부파일 인덱스를 생성한다.  
+&nbsp;&nbsp;&nbsp;• addFileTitle()로 파일의 이름을 DB에 저장한다.
 
 ### 4. **파일 업로드 처리** <br>
 • 4-1. 사용자가 파일을 업로드하면, WebBrowser가 uploadFile()을 호출한다.  
