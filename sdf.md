@@ -27,6 +27,6 @@
 • 4-2. getPermissions()*으로 권한 조회를 진행한다.  
 • 4-3. getType() 메소드로 사용자의 권한 유형을 결정한다.
 
-&nbsp;&nbsp;&nbsp;[학생 권한일 경우] <br>
+&nbsp;[학생 권한일 경우] <br>
 • 4-4. checkAccess()*를 통해 커뮤니티 게시판 접근이 허용된다.  
 • 4-5. manageContent()*를 통해 글 작성, 댓글 작성/수정/삭제 등이 가능해진다.
