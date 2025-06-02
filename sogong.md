@@ -51,11 +51,11 @@
 
 ### 5. **댓글 작성 및 삭제** <br>
 
-&nbsp;&nbsp;&nbsp;[댓글 작성 시] <br>
+&nbsp;[댓글 작성 시] <br>
 • 5-1. 사용자가 댓글 기능을 실행하면, createComment()를 호출한다.  
 • 5-2. appendCommentList() 메소드를 통해 댓글 내용, 작성자 ID, 비밀번호를 댓글 리스트에 추가한다.
 
-&nbsp;&nbsp;&nbsp;[댓글 삭제 시] <br>
+&nbsp;[댓글 삭제 시] <br>
 • 5-3. 댓글 삭제 시 deleteComment()가 호출된다.  
 • 5-4. delComment(CommentID, CommentPassword)를 통해 인증 후 댓글이 삭제된다.
 
@@ -63,10 +63,10 @@
 • 6-1. 사용자가 공지사항 등록 버튼을 누른다. → SetNoticeButton()*  
 • 6-2. getAdminType()으로 사용자의 권한을 조회한다.
 
-&nbsp;&nbsp;&nbsp;[학생 권한일 경우] <br>
+&nbsp;[학생 권한일 경우] <br>
 • 6-3. 공지사항 등록 권한이 없기 때문에 시스템은 AccessDenied() 메서드를 호출하여 접근을 거부한다.  
 • 6-4. setNoticeFailed()로 사용자에게 공지 등록 실패를 알린다.
 
-&nbsp;&nbsp;&nbsp;[관리자 권한일 경우] <br>
+&nbsp;[관리자 권한일 경우] <br>
 • 6-5. 사용자가 관리자 권한을 가진 경우, AccessGranted() 메서드를 통해 접근이 허용되었음을 나타낸다.  
 • 6-6. setNoticeSuccess()를 호출해 관리자에게 공지사항 접근 허용을 알린다.
