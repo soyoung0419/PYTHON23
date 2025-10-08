@@ -34,11 +34,11 @@ CampusPlanner/
 │   │   │   │   ├── ScheduleDao.java
 │   │   │   │   └── FriendDao.java
 │   │   ├── ui/
-│   │   │   ├── task/ (할 일 목록 화면)
-│   │   │   ├── schedule/ (시간표 화면)
-│   │   │   ├── calendar/ (캘린더/다이어리)
-│   │   │   ├── friend/ (친구 관리)
-│   │   │   └── notification/ (알림)
+│   │   │   ├── task/          (할 일 목록 화면)
+│   │   │   ├── schedule/      (시간표 화면)
+│   │   │   ├── calendar/      (캘린더/다이어리)
+│   │   │   ├── friend/        (친구 관리)
+│   │   │   └── notification/  (알림)
 │   │   ├── viewmodel/
 │   │   │   ├── TaskViewModel.java
 │   │   │   ├── ScheduleViewModel.java
@@ -54,7 +54,8 @@ CampusPlanner/
 │   │   ├── fragment_calendar.xml
 │   │   ├── fragment_friend.xml
 │   │   └── item_task.xml
-└── build.gradle. 디렉터리 구조
+└── build.gradle
+
 
 
 ⸻
