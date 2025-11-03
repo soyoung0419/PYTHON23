@@ -35,13 +35,15 @@ if (friendDao.existsByUid(uid)) {
 friendDao.addNew(name, uid);
 ```
 
-✔ 2차 (최종) 보증 → DAO 내부에서도 확인 가능 (선택적)
+<br>✔ 2차 (최종) 보증 → DAO 내부에서도 확인 가능 (선택적)
+```plaintext
 Friend addNew(String name, String uid) {
     if (friends.stream().anyMatch(f -> f.uid.equals(uid))) {
         throw new IllegalStateException("중복 UID 저장 시도!");
     }
     // 안전하게 저장
 }
+```
 
 
 
