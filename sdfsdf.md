@@ -277,6 +277,196 @@ class FriendViewModel {
 
 ---
 
+## 프롬프트
+책임분리 (SRP 원칙)에 대해 설명해주고 자바 콘솔에서 사용되는 예시를 알려줘
+
+---
+
+## 결과
+좋아요! SRP(단일 책임 원칙)에 대한 설명과 실제 자바 콘솔 기반 예시를 들어 더 자세히 설명해드릴게요.
+
+<br> **1. SRP (Single Responsibility Principle)란 무엇인가?**
+
+**SRP(Single Responsibility Principle, 단일 책임 원칙)**은 SOLID 원칙 중 첫 번째이며, 객체지향 프로그래밍에서 매우 중요한 개념입니다.
+
+“하나의 클래스는 오직 하나의 책임만 가져야 하며, 그 책임을 바꿔야 할 이유도 하나만 존재해야 한다.”
+
+즉,
+
+<br>하나의 클래스가 두 개 이상의 역할(예: 데이터 저장 + 화면 출력 + 계산)을 동시에 하면 SRP 위반입니다.
+
+<br>클래스는 작고 명확해야 하며, **“이 클래스는 뭘 위한 클래스야?”**라고 물었을 때 한 문장으로 설명 가능해야 SRP를 지킨 것입니다.
 
 
- 
+<br>**2. SRP가 왜 중요한가?**
+| 이유                  | 설명                                                     |
+|----------------------|----------------------------------------------------------|
+| 유지보수 쉬움         | 기능 수정 시 관련된 코드만 고치면 되기 때문에 다른 기능에 영향을 주지 않음 |
+| 버그 감소             | 책임이 분리되어 있으면 오류가 어디서 발생했는지 빠르게 파악할 수 있음       |
+| 코드 재사용성 증가     | 여러 기능이 한 클래스에 섞여 있지 않으므로 다른 프로젝트에서도 가져다 쓰기 쉬움 |
+| 테스트 쉬움 (단위 테스트) | 한 클래스가 한 기능만 담당하므로 테스트 코드 작성이 쉽고 정확함          |
+| SRP를 지키지 않으면    | 한 클래스 수정이 다른 기능 오류로 이어지며, 유지보수 난이도가 크게 증가함  |
+
+
+<br> **3. SRP를 위반한 예시 (나쁜 설계)**
+
+```plaintext
+public class FriendManager {
+    private List<Friend> friends = new ArrayList<>();
+
+    //  데이터 저장 (Model/DAO 역할)
+    public void addFriend(String name, String uid) {
+        friends.add(new Friend(name, uid));
+    }
+
+    //  데이터 조회
+    public List<Friend> listFriends() {
+        return friends;
+    }
+
+    // 하지만 아래부터는 SRP 위반
+    //  콘솔 출력까지 처리 (View 역할)
+    public void printAllFriends() {
+        System.out.println("===== 친구 목록 =====");
+        for (Friend friend : friends) {
+            System.out.println(friend.getName() + " / " + friend.getUid());
+        }
+    }
+
+    //  파일 저장까지 처리 (Persistence 역할)
+    public void saveToFile() throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("friends.dat"));
+        out.writeObject(friends);
+        out.close();
+    }
+}
+```
+<br>→ 이 클래스는 문제점이 많음:
+
+데이터 저장도 하고,
+
+화면 출력도 하고,
+
+파일 저장까지 함…
+즉, 책임이 3개 이상이라 SRP 완전 위반
+
+
+<br> 4. SRP를 잘 지킨 구조 (좋은 설계)
+<br> (1) Model – Friend.java
+
+오직 "데이터 구조 + 저장" 역할만 담당
+
+```plaintext
+public class Friend implements Serializable {
+    private String name;
+    private String uid;
+
+    public Friend(String name, String uid) {
+        this.name = name;
+        this.uid = uid;
+    }
+
+    public String getName() { return name; }
+    public String getUid() { return uid; }
+
+    @Override
+    public String toString() {
+        return name + " (" + uid + ")";
+    }
+}
+```
+
+<br>(2) DAO – FriendDao.java
+<br>오직 "추가, 삭제, 존재 여부 확인 같은 데이터 접근"만 담당
+```plaintext
+public class FriendDao {
+    private List<Friend> friends = new ArrayList<>();
+
+    public void add(Friend friend) {
+        friends.add(friend);
+    }
+
+    public boolean existsByUid(String uid) {
+        return friends.stream().anyMatch(f -> f.getUid().equals(uid));
+    }
+
+    public List<Friend> getAll() {
+        return new ArrayList<>(friends); // 외부에서 수정 못하게 복사본 반환
+    }
+}
+```
+
+
+<br> (3) Controller(ViewModel) – FriendController.java
+<br>오직 "비즈니스 로직 + 중복 UID 검사 + 데이터 흐름 제어"만 담당
+```plaintext
+public class FriendController {
+    private FriendDao dao;
+
+    public FriendController(FriendDao dao) {
+        this.dao = dao;
+    }
+
+    // 중복 UID 검사는 Controller가 담당 (비즈니스 로직)
+    public String addFriend(String name, String uid) {
+        if (dao.existsByUid(uid)) {
+            return "❌ UID 중복! 다른 UID를 입력하세요.";
+        }
+        dao.add(new Friend(name, uid));
+        return "✅ 친구 추가 완료!";
+    }
+
+    public List<Friend> getFriends() {
+        return dao.getAll();
+    }
+}
+```
+
+<br> (4) View – Console UI (입출력만 담당)
+```plaintext
+public class CampusPlannerConsole {
+
+    public static void handleFriends(Scanner sc, FriendController controller) {
+        while (true) {
+            System.out.println("\n1. 친구 추가 | 2. 조회 | 0. 종료");
+            System.out.print("선택: ");
+            int input = Integer.parseInt(sc.nextLine());
+
+            if (input == 1) {
+                System.out.print("이름 입력: ");
+                String name = sc.nextLine();
+                System.out.print("UID 입력: ");
+                String uid = sc.nextLine();
+
+                String result = controller.addFriend(name, uid);
+                System.out.println(result);
+            } else if (input == 2) {
+                System.out.println("\n=== 친구 목록 ===");
+                controller.getFriends().forEach(System.out::println);
+            } else if (input == 0) {
+                break;
+            }
+        }
+    }
+}
+```
+
+<br>**5. 결론 요약**
+| 항목          | 나쁜 설계                                     | 좋은 설계 (SRP 준수)          |
+|---------------|----------------------------------------------|-------------------------------|
+| 클래스가 하는 일 | 여러 개 (저장 + 출력 + 파일 저장 + 검사 등)    | 오직 1개 (역할과 책임이 명확함) |
+| 유지보수성       | 낮음                                         | 높음                          |
+| 테스트 용이성     | 어려움                                        | 쉬움 (단위 테스트 가능)       |
+| 오류 발생 시     | 문제의 위치를 파악하기 어려움                    | 문제 원인을 명확히 찾을 수 있음 |
+| 코드 재사용      | 재사용 어려움                                 | 재사용 쉬움                   |
+
+
+
+
+<br> **6. 더 궁금하면 이어서 알려줄 수 있는 것**
+- “SRP를 어기면 생기는 실제 문제 예시”
+- “Android MVVM에서 SRP는 어떻게 적용될까?”
+- “SRP + OCP + DIP까지 포함한 SOLID 전체 설명 원해?”
+- “보고서용 문장 + 발표용 대본도 만들어줄까?”
+
+---
