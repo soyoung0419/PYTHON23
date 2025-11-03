@@ -1,4 +1,4 @@
-## **<Instruction.md (Console + JSON 기반 CampusPlanner)>**
+## <Instruction.md (Console + JSON 기반 CampusPlanner)>
 
 
 ### 1. 목적 (Purpose)
