@@ -25,8 +25,8 @@ MVC는 프로그램을 세 가지 역할로 분리하여 구조화하는 디자�
                  출력 ← [View] ←
 ```
 
-<br> 콘솔 기반 CampusPlanner의 MVC 예제 (Friend 관리)
-1. Model (Friend.java)
+<br> (3) 콘솔 기반 CampusPlanner의 MVC 예제 (Friend 관리)
+<br>1. Model (Friend.java)
 ```plaintext
 public class Friend implements Serializable {
     private String name;
@@ -47,8 +47,8 @@ public class Friend implements Serializable {
 }
 ```
 
-2. DAO (FriendDao.java) → Model 저장/조회만 담당
-   ```plaintext
+<br>2. DAO (FriendDao.java) → Model 저장/조회만 담당
+```plaintext
    public class FriendDao {
     private final List<Friend> friends = new ArrayList<>();
 
@@ -68,7 +68,7 @@ public class Friend implements Serializable {
 
 
 
-3. Controller/ViewModel (FriendController.java) → 비즈니스 로직 / 중복 UID 검사 담당
+<br>3. Controller/ViewModel (FriendController.java) → 비즈니스 로직 / 중복 UID 검사 담당
 ```plaintext
 public class FriendController {
     private FriendDao dao;
@@ -93,8 +93,9 @@ public class FriendController {
 ```
 
 
-4. View (Console - CampusPlannerConsole.java 일부)
-   ```plaintext
+
+<br>4. View (Console - CampusPlannerConsole.java 일부)
+```plaintext
    public class CampusPlannerConsole {
 
     static void handleFriends(Scanner sc, FriendController controller) {
@@ -121,3 +122,29 @@ public class FriendController {
     }
 }
 ```
+
+
+
+
+<br> (4) 이해하기 쉽게 정리하면
+| 구분                          | 실제 역할           | 코드 파일                     |
+| ----------------------------- | -------------------- | ----------------------------- |
+| **Model**                     | 데이터 정의          | `Friend.java`                |
+| **DAO**                       | 데이터 저장/조회     | `FriendDao.java`             |
+| **Controller (Business Logic)** | 중복 검사, 실행 흐름 제어 | `FriendController.java`      |
+| **View**                      | UI 콘솔 입출력       | `CampusPlannerConsole.java`  |
+
+
+
+<br> (5) Android 버전 MVC(MVVM)으로 확장할 수도 있음!
+<br>추가 요청하시면 Android Activity + ViewModel + LiveData + Room 형태로도 변환해줄게요.
+
+
+
+
+<br> (6) 더 발전시키고 싶다면?
+
+✔ 친구 삭제 기능 추가
+✔ 파일 저장 (Serialization or RoomDB)
+✔ ViewModel → MVVM 구조로 변경
+✔ Android XML UI 연동도 가능
