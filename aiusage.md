@@ -142,13 +142,13 @@ List<Task> tasksDueOn(LocalDate date);
 
 - 사용자가 날짜를 기준으로 정보를 모아보는 입장에서 훨씬 직관적입니다.
 
-2. CalendarViewModel이 중간 조정자 역할을 수행
+<br>2. CalendarViewModel이 중간 조정자 역할을 수행
 
 - Diary와 Task는 독립적인 DAO/Model로 존재하지만, CalendarViewModel이 단일 API를 통해 묶어 줌으로써 UI 코드(handleDiary())에서는 두 클래스를 직접 다루지 않아도 됩니다.
 
 - 즉, UI → ViewModel → DAO 흐름이 깔끔하게 유지됨.
 
-3. 비즈니스 로직의 위치가 명확함
+<br>3. 비즈니스 로직의 위치가 명확함
 
 - Diary 자체는 “글을 저장하는 기능”만 담당.
 
