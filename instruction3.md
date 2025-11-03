@@ -31,8 +31,11 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 ### 3. 디렉터리 구조 
 
 CampusPlanner/
-├── CampusPlannerConsole.java        # 메인 전체 통합 코드 (Model, DAO, VM, Main 포함)
+
+├── CampusPlannerConsole.java
+
 │
+
 ├── ── (코드 내부 구성 흐름) ───────────────────────────────
 │
 │   ├── 1) Utils (유틸리티 클래스)
