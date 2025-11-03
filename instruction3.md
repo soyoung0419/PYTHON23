@@ -37,49 +37,49 @@ CampusPlanner/
 ├── CampusPlannerConsole.java      (메인 전체 통합 코드: Model + DAO + ViewModel + Main)
 │
 ├── 1) Utils (도움 클래스)
-│   ├── DateTimeUtils              (날짜/시간 파싱, 요일 변환)
-│   └── NotificationHelper         (ScheduledExecutorService 기반 콘솔 알림)
+│   ├── DateTimeUtils              
+│   └── NotificationHelper       
 │
 ├── 2) Model (Serializable 데이터 클래스)
-│   ├── Task                       (id, title, dueAt, memo, completed)
-│   ├── Schedule                   (courseName, room, 요일, 시작/종료시간)
-│   ├── Friend                     (name, uid)
-│   ├── Diary                      (date, text, imagePath)
-│   └── GradeEntry                 (courseName, score, 등급 계산)
+│   ├── Task                       
+│   ├── Schedule                   
+│   ├── Friend                    
+│   ├── Diary                     
+│   └── GradeEntry                 
 │
 ├── 3) Local Persistence (파일 저장/로드)
-│   ├── LocalStore                 (모든 ArrayList + id 시퀀스)
-│   └── LocalDatabaseManager       (program_data.bin.tmp → Atomic Move 저장)
+│   ├── LocalStore                 
+│   └── LocalDatabaseManager       
 │
 ├── 4) DAO (Data Access Object)
-│   ├── TaskDao                    (추가, 삭제, 수정, 임박 Task 조회)
-│   ├── ScheduleDao                (중복 검사, 요일별 조회)
-│   ├── FriendDao                  (친구 추가, 삭제, 조회)
-│   ├── DiaryDao                   (일기 저장/수정/삭제, 날짜별 조회)
-│   └── GradeDao                   (성적 저장, 수정, 삭제, 과목 기반 조회)
+│   ├── TaskDao                    
+│   ├── ScheduleDao               
+│   ├── FriendDao                 
+│   ├── DiaryDao                 
+│   └── GradeDao                   
 │
 ├── 5) ViewModel (비즈니스 로직 계층)
-│   ├── TaskViewModel              (Task + 알림 예약/취소)
-│   ├── ScheduleViewModel          (겹침 검사 후 저장, 다음 수업 확인)
-│   ├── FriendViewModel            (친구 추가/삭제/조회)
-│   ├── CalendarViewModel          (다이어리 + 해당 날짜 할 일 조회)
-│   └── GradeViewModel             (GPA 계산, 성적 요약 summary)
+│   ├── TaskViewModel              
+│   ├── ScheduleViewModel          
+│   ├── FriendViewModel           
+│   ├── CalendarViewModel          
+│   └── GradeViewModel             
 │
 ├── 6) Console Handlers (UI)
-│   ├── printMenu()                (메인 메뉴 출력)
-│   ├── handleTasks()              (할일 추가/목록/완료/삭제)
-│   ├── handleSchedule()           (시간표 추가/중복검사/삭제)
-│   ├── handleFriends()            (친구 추가/삭제/조회)
-│   ├── handleDiary()              (일기 추가/조회/수정/삭제)
-│   ├── handleToday()              (오늘 할 일 + 일기 요약)
-│   └── handleGrade()              (성적 추가/수정/GPA/요약)
+│   ├── printMenu()                
+│   ├── handleTasks()              
+│   ├── handleSchedule()        
+│   ├── handleFriends()         
+│   ├── handleDiary()             
+│   ├── handleToday()             
+│   └── handleGrade()             
 │
 ├── 7) Seed Data & Main
-│   ├── seed()                     (초기 데이터 자동 생성)
-│   └── main()                     (프로그램 실행 흐름 + 저장 후 종료)
+│   ├── seed()                     
+│   └── main()                    
 │
-├── program_data.bin               (저장된 데이터 파일 - 자동 생성됨)
-└── program_data.bin.tmp           (저장 시 임시 파일)
+├── program_data.bin               
+└── program_data.bin.tmp           
 ```
 
 
