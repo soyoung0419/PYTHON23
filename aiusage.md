@@ -51,13 +51,13 @@ Friend addNew(String name, String uid) {
 “입력 흐름과 사용자 메시지를 담당하는 ViewModel에서 먼저 검사하고,
 데이터의 최종 무결성을 보장하는 DAO에서 한 번 더 안전장치로 확인하는 것이 가장 좋은 구조다.”
 
---- <br><br><br>
+--- 
+<br><br><br>
 
 
 
 
-
-### *질문 2
+## *질문 2
 - 사용 AI: ChatGPT 5
 - 문제: 캠퍼스 플래너 콘솔 프로그램
 
