@@ -31,57 +31,56 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 ### 3. 디렉터리 구조 
 
 CampusPlanner/
-├── CampusPlannerConsole.java
+├─ CampusPlannerConsole.java
+│
+├─ (코드 내부 구성 흐름)
+│   ├─ 1) Utils
+│   │   ├─ DateTimeUtils
+│   │   └─ NotificationHelper
+│   │
+│   ├─ 2) Model
+│   │   ├─ Task
+│   │   ├─ Schedule
+│   │   ├─ Friend
+│   │   ├─ Diary
+│   │   └─ GradeEntry
+│   │
+│   ├─ 3) Local Persistence
+│   │   ├─ LocalStore
+│   │   └─ LocalDatabaseManager
+│   │
+│   ├─ 4) DAO (Data Access Object)
+│   │   ├─ Crud<T>
+│   │   ├─ TaskDao
+│   │   ├─ ScheduleDao
+│   │   ├─ FriendDao
+│   │   ├─ DiaryDao
+│   │   └─ GradeDao
+│   │
+│   ├─ 5) ViewModel
+│   │   ├─ TaskViewModel
+│   │   ├─ ScheduleViewModel
+│   │   ├─ FriendViewModel
+│   │   ├─ CalendarViewModel
+│   │   └─ GradeViewModel
+│   │
+│   ├─ 6) Console Handlers
+│   │   ├─ printMenu()
+│   │   ├─ handleTasks()
+│   │   ├─ handleSchedule()
+│   │   ├─ handleFriends()
+│   │   ├─ handleDiary()
+│   │   ├─ handleToday()
+│   │   └─ handleGrade()
+│   │
+│   └─ 7) Seed & Main Flow
+│       ├─ seed()
+│       └─ main()
+│
+├─ program_data.bin
+├─ program_data.bin.tmp
+└─ Instruction.md / README.md
 
-├── ── (코드 내부 구성 흐름) ───────────────────────────────
-
-│   ├── 1) Utils
-│   │    ├── DateTimeUtils
-│   │    └── NotificationHelper
-
-│   ├── 2) Model
-│   │    ├── Task
-│   │    ├── Schedule
-│   │    ├── Friend
-│   │    ├── Diary
-│   │    └── GradeEntry
-
-│   ├── 3) Local Persistence
-│   │    ├── LocalStore
-│   │    └── LocalDatabaseManager
-
-│   ├── 4) DAO (Data Access Object)
-│   │    ├── Crud<T> interface
-│   │    ├── TaskDao
-│   │    ├── ScheduleDao
-│   │    ├── FriendDao
-│   │    ├── DiaryDao
-│   │    └── GradeDao
-
-│   ├── 5) ViewModel
-│   │    ├── TaskViewModel
-│   │    ├── ScheduleViewModel
-│   │    ├── FriendViewModel
-│   │    ├── CalendarViewModel
-│   │    └── GradeViewModel
-
-│   ├── 6) Console Handlers (메뉴 UI)
-│   │    ├── printMenu()
-│   │    ├── handleTasks()
-│   │    ├── handleSchedule()
-│   │    ├── handleFriends()
-│   │    ├── handleDiary()
-│   │    ├── handleToday()
-│   │    └── handleGrade()
-
-│   └── 7) Seed Data / Main 실행 흐름
-│        ├── seed()
-│        └── main()
-
-├── program_data.bin
-├── program_data.bin.tmp
-
-└── README.md / Instruction.md
 
 
 
