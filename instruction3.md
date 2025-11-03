@@ -31,11 +31,8 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 ### 3. 디렉터리 구조 
 
 CampusPlanner/
-
-├── CampusPlannerConsole.java
-
+├── CampusPlannerConsole.java        # 메인 전체 통합 코드 (Model, DAO, VM, Main 포함)
 │
-
 ├── ── (코드 내부 구성 흐름) ───────────────────────────────
 │
 │   ├── 1) Utils (유틸리티 클래스)
@@ -81,10 +78,10 @@ CampusPlanner/
 │        ├── seed()                   # 첫 실행 시 테스트 데이터 자동 생성
 │        └── main()                   # 전체 흐름 제어 + 저장 후 종료
 │
-├── program_data.bin                  # LocalStore 직렬화 파일 (자동 생성)
-├── program_data.bin.tmp              # 저장 시 임시 파일
+├── program_data.bin (자동 생성됨)     # LocalStore 직렬화 파일
+├── program_data.bin.tmp               # 저장 시 임시 파일
 │
-└── README.md / Instruction.md        # 문서 파일
+└── README.md / Instruction.md (작성 예정 문서 파일)
 
 
 
