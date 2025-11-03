@@ -148,3 +148,9 @@ public class FriendController {
 -  파일 저장 (Serialization or RoomDB)
 -  iewModel → MVVM 구조로 변경
 -  ndroid XML UI 연동도 가능
+
+---
+
+### 프롬프트
+
+ 
