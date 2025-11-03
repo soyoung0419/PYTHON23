@@ -46,14 +46,13 @@ Friend addNew(String name, String uid) {
 }
 ```
 
-
-
 <br>✅ 요약하면,
 
 “입력 흐름과 사용자 메시지를 담당하는 ViewModel에서 먼저 검사하고,
 데이터의 최종 무결성을 보장하는 DAO에서 한 번 더 안전장치로 확인하는 것이 가장 좋은 구조다.”
 
 ---
+
 
 
 
@@ -66,9 +65,47 @@ Friend addNew(String name, String uid) {
 
 **프롬프트**
 
+<br>ViewModel에서 Scanner를 직접 쓰지 않도록 했는데, 이런 구조가 테스트 코드 작성에 왜 유리한가요?
+
 ---
 
 **결과**
+
+
+<br>좋은 질문이에요! 이 질문에 대해 이해하기 쉽게 설명해드릴게요.
+
+<br>✅ 💡 답변 핵심 요약:
+| 이유                                                | 설명                                                                                                                                                                           |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. 입력(Scanner)과 로직(ViewModel)을 분리 → 단위 테스트 가능** | ViewModel 안에 Scanner 같은 사용자 입력 코드가 포함되어 있으면, 테스트할 때 항상 키보드 입력을 흉내 내야 합니다. 하지만 입력을 핸들러(UI 계층)에만 두고 ViewModel은 로직만 담당하게 하면, 테스트 시에 직접 메서드를 호출해서 결과만 검증하면 되기 때문에 테스트가 훨씬 쉬워집니다. |
+| **2. Mocking / 자동화 테스트에 유리**                      | ViewModel에 Scanner가 있으면 테스트 환경에서 입력 흐름을 가짜(mock)로 만들기 어렵습니다. 반면, ViewModel이 입력 없이 메서드만 제공하면 JUnit 같은 테스트 코드에서 DAO를 Mocking하여 자유롭게 테스트할 수 있습니다.                               |
+| **3. ViewModel이 “순수 로직(Pure Logic)” 상태가 됨**       | Scanner, System.out 같은 I/O는 외부 환경에 영향을 받기 때문에 테스트하기 어렵습니다. ViewModel에서 이를 제거하면 부작용 없는 ‘순수한 로직’만 남게 되어 테스트뿐 아니라 유지보수도 쉬워집니다.                                                  |
+| **4. UI 변경에 독립적**                                 | 나중에 콘솔 UI → GUI 또는 Android UI로 바꿔도 ViewModel은 그대로 재사용 가능해집니다. 즉, ViewModel이 Scanner에 묶여 있지 않기 때문에 구조적으로 더 유연합니다.                                                             |
+
+
+<br>✅ 📘 예시로 더 쉽게 설명하면:
+
+```plaintext
+// ❌ Scanner가 ViewModel 안에 있는 경우
+class FriendViewModel {
+    void addFriend() {
+        Scanner sc = new Scanner(System.in); // UI 코드
+        String name = sc.nextLine();
+        dao.add(new Friend(name));
+    }
+}
+
+// ✅ ViewModel은 입력 없이 로직만 처리하는 경우
+class FriendViewModel {
+    void addFriend(String name, String uid) {
+        dao.addNew(name, uid); // 순수 로직
+    }
+}
+```
+
+✔ 첫 번째 경우에는 테스트할 때 키보드 입력을 흉내 내야 해서 자동화 테스트가 어렵습니다.
+✔ 두 번째 경우에는 단순히 메서드 호출 → 결과만 검증하면 되므로 테스트가 쉬워집니다.
+
 
 ---
 
