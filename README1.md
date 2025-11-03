@@ -1,4 +1,4 @@
-<Specification.md (수정 및 확장 버전 — Console 기반 CampusPlanner)>
+# **<Specification.md (수정 및 확장 버전 — Console 기반 CampusPlanner)>**
 
 
 1. 목적
