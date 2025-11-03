@@ -1,7 +1,7 @@
 # AI 활용보고서
 
 
-### *질문 1
+## *질문 1
 
 - 사용 AI: ChatGPT 5
 - 문제: 캠퍼스 플래너 콘솔 프로그램
@@ -57,7 +57,7 @@ Friend addNew(String name, String uid) {
 
 
 
-<br>### *질문 2
+### *질문 2
 - 사용 AI: ChatGPT 5
 - 문제: 캠퍼스 플래너 콘솔 프로그램
 
