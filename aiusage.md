@@ -73,7 +73,7 @@ Friend addNew(String name, String uid) {
 <br>DAO에 대해 궁금해한 내용을 기반으로, 이해하기 쉽게 정리해줄게!
 
 
-<br>✅ DAO(Data Access Object)는 애플리케이션 구조에서 정확히 어떤 역할을 수행할까?
+<br>(1) DAO(Data Access Object)는 애플리케이션 구조에서 정확히 어떤 역할을 수행할까?
 
 DAO는 애플리케이션에서 데이터를 저장하고 불러오는 모든 작업을 전담하는 계층이다.
 예를 들어 CampusPlanner에서는 FriendDao, DiaryDao, TaskDao 등이 이 계층에 해당한다. 이 객체들은 단순히 자료구조(List)에 데이터를 넣는 것이 아니라, LocalStore와 program_data.bin 파일에 데이터를 안정적으로 저장하고, 필요한 데이터를 찾아 전달하는 역할을 맡는다.
@@ -86,7 +86,7 @@ DAO가 데이터 저장/수정/삭제/조회를 모두 담당하기 때문에, V
 즉, DAO는 비즈니스 로직과 데이터 저장 방식을 분리해 코드의 재사용성과 유지보수성을 높여주는 핵심 구조이다.
 
 
-<br>✅ UID 중복 검사 같은 데이터 검증도 DAO가 담당할 수 있을까?
+<br>(2) UID 중복 검사 같은 데이터 검증도 DAO가 담당할 수 있을까?
 
 이 질문은 매우 중요한데, 결론부터 말하면:
 
@@ -109,7 +109,7 @@ DAO는 “데이터를 저장할 때 절대 깨지지 않도록 보장해야 하
 | 메뉴 이동, 화면 갱신 같은 UI 흐름 제어                       | DAO는 **데이터 저장/조회만 책임**지고, 화면 흐름은 ViewModel 또는 UI 계층이 담당해야 함 |
 
 
-<br>✅ 정리하면 이렇게 말할 수 있다
+<br>(3) 정리하면 이렇게 말할 수 있다
 
 - DAO는 데이터 저장소(LocalStore + 파일)를 안전하게 다루는 전담 계층이다.
 
@@ -120,7 +120,66 @@ DAO는 “데이터를 저장할 때 절대 깨지지 않도록 보장해야 하
 - 이렇게 역할을 분리하면, 코드 테스트가 쉽고 유지보수성이 좋아지며, 나중에 DB나 클라우드 시스템으로 바꾸더라도 DAO만 수정하면 전체 코드가 그대로 동작한다.
 
 
-<br>✅설계 예시로 보면 더 이해 쉬움
+<br> (4) 설계 예시로 보면 더 이해 쉬움
+<br>1. FriendDao (DAO) – “최종 저장 책임자”
+``` plaintext
+class FriendDao {
+    private final LocalStore store;
+    private final LocalDatabaseManager db;
+
+    FriendDao(LocalStore store, LocalDatabaseManager db){
+        this.store = store; this.db = db;
+    }
+
+    // DAO 단계에서 최종 중복 방지
+    Friend addNew(String name, String uid){
+        // 저장소 무결성 보장을 위해, DAO 차원에서 한 번 더 UID 중복 검사
+        boolean exists = store.friends.stream()
+                            .anyMatch(f -> f.uid.equalsIgnoreCase(uid));
+        if (exists) {
+            throw new IllegalArgumentException("중복 UID는 저장할 수 없습니다.");
+        }
+
+        long id = store.friendSeq++;
+        Friend f = new Friend(id, name, uid);
+        store.friends.add(f);
+        db.save(store);
+        return f;
+    }
+}
+```
+
+<br>2. FriendViewModel – “UI 흐름과 사용자 안내 담당”
+```plaintext
+class FriendViewModel {
+    private final FriendDao dao;
+
+    public FriendViewModel(FriendDao dao) {
+        this.dao = dao;
+    }
+
+    // ViewModel에서는 "저장 전에 미리 검사 + 사용자 안내" 역할 담당
+    public String addFriend(String name, String uid){
+        boolean exists = dao.getAll().stream()
+                            .anyMatch(f -> f.uid.equalsIgnoreCase(uid));
+        if (exists) {
+            return "⚠ 이미 존재하는 UID입니다. 다른 UID를 입력해 주세요.";
+        }
+
+        dao.addNew(name, uid);  // 최종 저장 (DAO에서 한 번 더 확인)
+        return " 친구가 성공적으로 추가되었습니다.";
+    }
+}
+```
+
+<br> (5) 이런 설계의 장점은?
+| 장점               | 설명                                                                 |
+| ------------------ | -------------------------------------------------------------------- |
+| **데이터 신뢰성 확보**   | DAO가 항상 최종 방어막 역할을 하여 잘못된 데이터가 저장되는 것을 근본적으로 차단함              |
+| **테스트 코드 작성 용이** | ViewModel은 Scanner 같은 입력 없이 메서드 호출만으로 테스트할 수 있어 단위 테스트가 쉬움       |
+| **UI와 로직 분리**    | ViewModel은 UI 흐름 + 검증 담당, DAO는 저장만 담당 → 역할이 명확하게 분리됨          |
+| **확장성 증가**       | 파일 저장 방식에서 MySQL, Firebase 등으로 변경되더라도 DAO만 수정하면 되기 때문에 유지보수 쉬움 |
+
 
 
 
