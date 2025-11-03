@@ -14,13 +14,13 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 | 항목            | 내용                                                                 |
 |-----------------|----------------------------------------------------------------------|
 | **개발 언어**     | Java (JDK 11 이상)                                                   |
-| **실행 방식**     | 콘솔 기반: `javac CampusPlannerConsole.java && java CampusPlannerConsole` |
+| **실행 방식**     | 콘솔 기반: javac CampusPlannerConsole.java && java CampusPlannerConsole |
 | **UI 방식**      | GUI(X), **System.out + Scanner 입력 기반 Console UI**                |
 | **데이터 저장**    | **Java Object Serialization → program_data.bin 파일 저장**           |
 | **알림 기능**     | Android AlarmManager(X) → **ScheduledExecutorService 기반 콘솔 알림** |
 | **아키텍처**      | **MVC + DAO + ViewModel 구조**                                       |
 | **외부 라이브러리** | 없음 (**Pure Java**)                                                 |
-| **파일 위치**     | 실행 경로 기준 `program_data.bin` 자동 생성                                |
+| **파일 위치**     | 실행 경로 기준 program_data.bin 자동 생성                                |
 
 
                                                 
