@@ -119,11 +119,13 @@ class FriendViewModel {
 ---
 
 **프롬프트**
+
 <br>다이어리 화면에서 해당 날짜의 Task(할 일)를 같이 보여주는 기능(tasksDueOn)처럼, 기능을 서로 연결시켜도 될까, 아니면 분리해야 할까?
 
 ---
 
 **결과**
+
 <br>현재 코드에서는 CalendarViewModel이 DiaryDao와 TaskDao를 동시에 참조하며, 아래 기능을 제공하고 있습니다:
 
 ```plaintext
