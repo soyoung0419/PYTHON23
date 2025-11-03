@@ -31,56 +31,58 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 ### 3. 디렉터리 구조 
 
 CampusPlanner/
-├── CampusPlannerConsole.java        # 메인 전체 통합 코드 (Model, DAO, VM, Main 포함)
-│
+├── CampusPlannerConsole.java
+
 ├── ── (코드 내부 구성 흐름) ───────────────────────────────
-│
-│   ├── 1) Utils (유틸리티 클래스)
-│   │    ├── DateTimeUtils            
-│   │    └── NotificationHelper       
-│   │
-│   ├── 2) Model (Serializable 클래스들)
-│   │    ├── Task                     
-│   │    ├── Schedule                 
-│   │    ├── Friend                   
-│   │    ├── Diary                   
-│   │    └── GradeEntry               
-│   │
-│   ├── 3) Local Persistence (파일 저장/로드)
-│   │    ├── LocalStore              
-│   │    └── LocalDatabaseManager    
-│   │
+
+│   ├── 1) Utils
+│   │    ├── DateTimeUtils
+│   │    └── NotificationHelper
+
+│   ├── 2) Model
+│   │    ├── Task
+│   │    ├── Schedule
+│   │    ├── Friend
+│   │    ├── Diary
+│   │    └── GradeEntry
+
+│   ├── 3) Local Persistence
+│   │    ├── LocalStore
+│   │    └── LocalDatabaseManager
+
 │   ├── 4) DAO (Data Access Object)
-│   │    ├── Crud<T> interface       
-│   │    ├── TaskDao                  
-│   │    ├── ScheduleDao             
-│   │    ├── FriendDao               
-│   │    ├── DiaryDao                
-│   │    └── GradeDao                 
-│   │
-│   ├── 5) ViewModel (비즈니스 로직 / 검증 로직 층)
-│   │    ├── TaskViewModel            
-│   │    ├── ScheduleViewModel        
-│   │    ├── FriendViewModel          
-│   │    ├── CalendarViewModel        
-│   │    └── GradeViewModel           
-│   │
+│   │    ├── Crud<T> interface
+│   │    ├── TaskDao
+│   │    ├── ScheduleDao
+│   │    ├── FriendDao
+│   │    ├── DiaryDao
+│   │    └── GradeDao
+
+│   ├── 5) ViewModel
+│   │    ├── TaskViewModel
+│   │    ├── ScheduleViewModel
+│   │    ├── FriendViewModel
+│   │    ├── CalendarViewModel
+│   │    └── GradeViewModel
+
 │   ├── 6) Console Handlers (메뉴 UI)
-│   │    ├── printMenu()              
-│   │    ├── handleTasks()           
-│   │    ├── handleSchedule()         
-│   │    ├── handleFriends()         
-│   │    ├── handleDiary()           
-│   │    ├── handleToday()            
-│   │    └── handleGrade()            
-│   │
+│   │    ├── printMenu()
+│   │    ├── handleTasks()
+│   │    ├── handleSchedule()
+│   │    ├── handleFriends()
+│   │    ├── handleDiary()
+│   │    ├── handleToday()
+│   │    └── handleGrade()
+
 │   └── 7) Seed Data / Main 실행 흐름
-│        ├── seed()                   
-│        └── main()                   
-│
-├── program_data.bin (자동 생성됨)     
-├── program_data.bin.tmp               
-└── 
+│        ├── seed()
+│        └── main()
+
+├── program_data.bin
+├── program_data.bin.tmp
+
+└── README.md / Instruction.md
+
 
 
 
