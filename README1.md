@@ -1,4 +1,4 @@
-# **<Specification.md (Console 기반 CampusPlanner)>**
+## **<Specification.md (Console 기반 CampusPlanner)>**
 
 
 ### 1. 목적
