@@ -27,12 +27,13 @@
 
 
 <br>✅ 가장 이상적인 구조는?
-✔ 1차 검사 → ViewModel에서
+<br>✔ 1차 검사 → ViewModel에서
+```plaintext
 if (friendDao.existsByUid(uid)) {
     throw new IllegalArgumentException("이미 존재하는 UID입니다.");
 }
 friendDao.addNew(name, uid);
-
+```
 
 ✔ 2차 (최종) 보증 → DAO 내부에서도 확인 가능 (선택적)
 Friend addNew(String name, String uid) {
@@ -41,6 +42,7 @@ Friend addNew(String name, String uid) {
     }
     // 안전하게 저장
 }
+
 
 
 <br>✅ 요약하면,
