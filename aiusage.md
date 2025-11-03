@@ -54,7 +54,7 @@ Friend addNew(String name, String uid) {
 ---
 
 
-
+--
 
 
 ### *질문 2
