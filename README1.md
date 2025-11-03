@@ -1,7 +1,7 @@
 # **<Specification.md (Console 기반 CampusPlanner)>**
 
 
-## 1. 목적
+### 1. 목적
 
 본 문서는 CampusPlanner 프로그램의 “무엇을(What)” 구현할지를 정의한다.
 이 프로젝트는 Android/Firebase 기반이 아닌, Java 콘솔 환경 + Local File 저장 방식으로 동작하는 일정 관리 시스템이다.
@@ -19,7 +19,7 @@ GUI(Android Studio X) 대신 Console Text UI
 
 
 
-3. 핵심 기능 목록 (Console 버전에 맞게 반영)
+### 3. 핵심 기능 목록 (Console 버전에 맞게 반영)
    
 A. 할 일(Task) 관리
 | 코드 | 기능명 | 설명 |
@@ -71,7 +71,7 @@ F. 오늘 보기(Today)
 | F3 | 오늘 작성된 일기 | 오늘 날짜와 일치하는 Diary 항목 출력 |
 
 
-4. 비기능적 요구사항 (Console 환경 반영)
+### 4. 비기능적 요구사항 (Console 환경 반영)
 
 | 항목 | 요구사항 (Console 기반) |
 |------|---------------------------|
