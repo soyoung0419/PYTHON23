@@ -144,7 +144,7 @@ public class FriendController {
 
 <br> (6) 더 발전시키고 싶다면?
 
-✔ 친구 삭제 기능 추가
-✔ 파일 저장 (Serialization or RoomDB)
-✔ ViewModel → MVVM 구조로 변경
-✔ Android XML UI 연동도 가능
+- 친구 삭제 기능 추가
+-  파일 저장 (Serialization or RoomDB)
+-  iewModel → MVVM 구조로 변경
+-  ndroid XML UI 연동도 가능
