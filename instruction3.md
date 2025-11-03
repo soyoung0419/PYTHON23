@@ -108,4 +108,16 @@ CampusPlanner/
 
 
 
+### 5. 저장 구조
+
+| 항목       | 방식                                                          |
+|------------|---------------------------------------------------------------|
+| **파일 이름**  | program_data.bin                                          |
+| **저장 형식**  | Java ObjectOutputStream (객체 직렬화 방식)                |
+| **안전 저장**  | .tmp 파일에 먼저 저장 후 → 프로그램 종료 직전에 Atomic Replace 적용 |
+| **저장 위치**  | .java 파일이 실행된 현재 디렉터리(working directory)    |
+| **데이터 포함**| Task, Schedule, Friend, Diary, GradeEntry, 각 ID 시퀀스 값    |                                                                               
+
+
+
 
