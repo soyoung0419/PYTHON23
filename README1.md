@@ -1,7 +1,7 @@
 # **<Specification.md (Console 기반 CampusPlanner)>**
 
 
-1. 목적
+## 1. 목적
 
 본 문서는 CampusPlanner 프로그램의 “무엇을(What)” 구현할지를 정의한다.
 이 프로젝트는 Android/Firebase 기반이 아닌, Java 콘솔 환경 + Local File 저장 방식으로 동작하는 일정 관리 시스템이다.
