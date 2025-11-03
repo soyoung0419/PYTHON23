@@ -31,55 +31,57 @@ CampusPlanner는 대학생을 위한 통합 일정 관리 프로그램으로,
 ### 3. 디렉터리 구조 
 
 CampusPlanner/
-├─ CampusPlannerConsole.java
+├── CampusPlannerConsole.java        # 메인 전체 통합 코드 (Model, DAO, VM, Main 포함)
 │
-├─ (코드 내부 구성 흐름)
-│   ├─ 1) Utils
-│   │   ├─ DateTimeUtils
-│   │   └─ NotificationHelper
-│   │
-│   ├─ 2) Model
-│   │   ├─ Task
-│   │   ├─ Schedule
-│   │   ├─ Friend
-│   │   ├─ Diary
-│   │   └─ GradeEntry
-│   │
-│   ├─ 3) Local Persistence
-│   │   ├─ LocalStore
-│   │   └─ LocalDatabaseManager
-│   │
-│   ├─ 4) DAO (Data Access Object)
-│   │   ├─ Crud<T>
-│   │   ├─ TaskDao
-│   │   ├─ ScheduleDao
-│   │   ├─ FriendDao
-│   │   ├─ DiaryDao
-│   │   └─ GradeDao
-│   │
-│   ├─ 5) ViewModel
-│   │   ├─ TaskViewModel
-│   │   ├─ ScheduleViewModel
-│   │   ├─ FriendViewModel
-│   │   ├─ CalendarViewModel
-│   │   └─ GradeViewModel
-│   │
-│   ├─ 6) Console Handlers
-│   │   ├─ printMenu()
-│   │   ├─ handleTasks()
-│   │   ├─ handleSchedule()
-│   │   ├─ handleFriends()
-│   │   ├─ handleDiary()
-│   │   ├─ handleToday()
-│   │   └─ handleGrade()
-│   │
-│   └─ 7) Seed & Main Flow
-│       ├─ seed()
-│       └─ main()
+├── ── (코드 내부 구성 흐름) ───────────────────────────────
 │
-├─ program_data.bin
-├─ program_data.bin.tmp
-└─ Instruction.md / README.md
+│   ├── 1) Utils (유틸리티 클래스)
+│   │    ├── DateTimeUtils            # 날짜 파싱, 요일 변환, 형식화
+│   │    └── NotificationHelper       # ScheduledExecutorService 기반 콘솔 알림
+│   │
+│   ├── 2) Model (Serializable 클래스들)
+│   │    ├── Task                     # id, title, dueAt, memo, completed
+│   │    ├── Schedule                 # courseName, room, 요일, 시작시간, 종료시간
+│   │    ├── Friend                   # 이름, uid
+│   │    ├── Diary                    # 날짜, 본문, 이미지 경로
+│   │    └── GradeEntry               # 과목명, 점수, 등급 계산
+│   │
+│   ├── 3) Local Persistence (파일 저장/로드)
+│   │    ├── LocalStore               # 모든 데이터 ArrayList 저장소 + id 시퀀스
+│   │    └── LocalDatabaseManager     # program_data.bin.tmp → Atomic Move 저장
+│   │
+│   ├── 4) DAO (Data Access Object)
+│   │    ├── Crud<T> interface        # add, get, getAll, update, delete
+│   │    ├── TaskDao                  # Task 추가, 수정, 삭제, 임박 조회
+│   │    ├── ScheduleDao              # 시간표 저장, 중복 검사, 요일별 가져오기
+│   │    ├── FriendDao                # 친구 목록 저장, 삭제
+│   │    ├── DiaryDao                 # 날짜별 다이어리 저장/조회
+│   │    └── GradeDao                 # 성적 저장, byCourse(), id 기반 수정
+│   │
+│   ├── 5) ViewModel (비즈니스 로직 / 검증 로직 층)
+│   │    ├── TaskViewModel            # Task + 알림 연결, 완료 toggle, dueSoon()
+│   │    ├── ScheduleViewModel        # hasOverlap 검사 후 저장, 다음 수업 찾기
+│   │    ├── FriendViewModel          # FriendDao 호출 (추후 중복검사 확장 가능)
+│   │    ├── CalendarViewModel        # Diary + 할일 연결 (오늘보기)
+│   │    └── GradeViewModel           # GPA, 평균 계산, 성적 요약 summary()
+│   │
+│   ├── 6) Console Handlers (메뉴 UI)
+│   │    ├── printMenu()              # 메인 메뉴 출력
+│   │    ├── handleTasks()            # 할 일 추가, 목록, 수정 등
+│   │    ├── handleSchedule()         # 수업 추가, 중복 검사, 다음 수업 조회
+│   │    ├── handleFriends()          # 친구 추가, 삭제, 조회
+│   │    ├── handleDiary()            # 다이어리 추가, 수정, 삭제
+│   │    ├── handleToday()            # 오늘 할 일 + 오늘 일기 동시에 보기
+│   │    └── handleGrade()            # 성적 추가, GPA 계산, 요약
+│   │
+│   └── 7) Seed Data / Main 실행 흐름
+│        ├── seed()                   # 첫 실행 시 테스트 데이터 자동 생성
+│        └── main()                   # 전체 흐름 제어 + 저장 후 종료
+│
+├── program_data.bin                  # LocalStore 직렬화 파일 (자동 생성)
+├── program_data.bin.tmp              # 저장 시 임시 파일
+│
+└── README.md / Instruction.md        # 문서 파일
 
 
 
