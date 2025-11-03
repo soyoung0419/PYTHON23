@@ -1,4 +1,4 @@
-## <Instruction.md (Console CampusPlanner)>
+## <Instruction.md (CampusPlannerConsole)>
 
 
 ### 1. 목적 
