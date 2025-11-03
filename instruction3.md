@@ -85,11 +85,11 @@ CampusPlanner/
 | 클래스                      | 역할                 | 주요 기능                                                   |
 | -------------------------- | -------------------- | ----------------------------------------------------------- |
 | **LocalStore**             | 메모리 기반 저장소        | Task, Schedule, Friend, Diary, Grade 저장 + ID 시퀀스        |
-| **LocalDatabaseManager**   | 파일 저장/로드           | `program_data.bin.tmp → program_data.bin` 원자적 저장       |
-| **Task**                   | 할 일 데이터 모델         | 제목, 마감일, 완료 여부, 메모 + `isDueSoon()` 제공           |
+| **LocalDatabaseManager**   | 파일 저장/로드           | program_data.bin.tmp → program_data.bin 원자적 저장       |
+| **Task**                   | 할 일 데이터 모델         | 제목, 마감일, 완료 여부, 메모 + isDueSoon() 제공           |
 | **TaskDao**                | Task CRUD + 저장     | addNew(), delete(), toggleDone(), 저장 시 파일 즉시 반영    |
 | **TaskViewModel**          | 할 일 비즈니스 로직       | Task 추가 시 알림 예약 / 완료 처리 시 알림 취소             |
-| **Schedule**               | 주간 시간표 데이터        | 요일, 시작/종료 시각, `overlaps()` 겹침 검사, 다음 수업 계산  |
+| **Schedule**               | 주간 시간표 데이터        | 요일, 시작/종료 시각, overlaps() 겹침 검사, 다음 수업 계산  |
 | **ScheduleViewModel**      | 시간표 처리 로직         | 겹침 검사 후 추가, 요일별/주간 조회, 다음 수업 보여주기       |
 | **Friend**                 | 친구 정보             | 이름, UID 저장                                              |
 | **FriendDao / VM**         | 친구 CRUD 관리         | 추가, 삭제, 조회 (중복 검사 로직 추가 가능)                  |
