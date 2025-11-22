@@ -25,7 +25,8 @@ MVVM(Model–View–ViewModel)은 **UI(View)**와 **비즈니스 로직(Model)**
 
 
 
-2. 왜 MVVM이 필요한가? (근본적인 목적)
+<br> 2. 왜 MVVM이 필요한가? (근본적인 목적)
+
 ① UI와 로직 분리 → 유지보수성 극대화
 
 UI를 바꾸더라도 로직(ViewModel) 수정은 필요 없음
@@ -47,9 +48,9 @@ DAO가 마지막 수비수라면, ViewModel은 미드필더
 
 CampusPlanner 같은 팀 프로젝트에 매우 중요
 
-View 팀
+- View 팀
 
-Model 팀
+- Model 팀
 
-ViewModel/Service 팀
+- ViewModel/Service 팀
 이렇게 분업이 쉽다.
