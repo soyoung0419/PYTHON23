@@ -54,3 +54,64 @@ CampusPlanner 같은 팀 프로젝트에 매우 중요
 
 - ViewModel/Service 팀
 이렇게 분업이 쉽다.
+
+
+## **3. MVVM 구성 요소별 깊이 있는 역할**
+
+<br> (1) Model
+
+- 데이터 구조 (DTO/Entity)
+
+- 순수 비즈니스 로직
+
+- Repository/DAO 같은 저장소
+
+- UI와 완전히 독립
+
+- Model은 어떤 UI에서 쓰이는지도 모르는 상태가 이상적인 구조
+
+<br> (2) View
+
+- 사용자 입력/출력 담당
+
+- Android에서는 Activity/Fragment
+
+- Console 프로그램에서는 Scanner로 입력 받고 println으로 출력
+
+View는 아래 같은 일을 하면 안 된다 (금지)
+- “UID 중복인가?” 검사
+- 날짜 포맷 오류 잡기
+- 비즈니스 로직 호출 (DAO 직접 사용)
+
+View는 오직 ViewModel 메서드만 호출해야 한다.
+
+
+<br>(3) ViewModel (MVVM의 핵심 두뇌)
+
+역할을 더 깊게 보면:
+
+✔ A. UI에서 넘어온 입력을 검증
+
+- 값이 비었는지
+
+- 포맷이 맞는지
+
+- 중복인지
+
+- 논리적으로 말이 되는지 (예: 종료 시간이 시작 시간보다 빠름)
+
+✔ B. Model/DAO 호출
+
+- 저장/조회/삭제 등의 핵심 행위 수행
+
+- UI는 절대 DB를 직접 건드리지 않음
+
+✔ C. 예외/오류 메시지 가공 후 UI로 전달
+
+- 오류 발생 시 사용자 친화적인 메시지 반환
+
+- View는 그대로 출력만 하면 됨
+
+✔ D. 상태 저장 (Android에서는 LiveData, StateFlow 사용)
+
+- UI에서 자동 반응 → ViewModel은 UI 코드를 전혀 몰라도 됨
