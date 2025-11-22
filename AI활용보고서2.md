@@ -435,3 +435,72 @@ ViewModel 패턴(MVVM)은 UI와 비즈니스 로직을 완전히 분리하여
 
 너처럼 CampusPlanner, Android 앱, 콘솔 기반 프로젝트, UI/백엔드 분리 과제를 하는 학생에게 가장 적합한 아키텍처야.
 
+
+
+---
+
+### 프롬프트
+LocalStore가 메모리 기반 DB로 동작하는 이유와 장단점은 뭐야?
+
+---
+
+### 결과
+
+아주 정확하고, “왜 LocalStore가 메모리 기반 DB처럼 동작하는지”를
+CampusPlanner와 일반적인 소프트웨어 구조 관점에서 명확하게 설명해줄게.
+
+## LocalStore가 ‘메모리 기반 DB’처럼 동작하는 이유
+
+LocalStore는 내부적으로 이렇게 생겼지:
+```
+static class LocalStore implements Serializable {
+    List<Task> tasks = new ArrayList<>();
+    List<Schedule> schedules = new ArrayList<>();
+    List<Friend> friends = new ArrayList<>();
+    List<Diary> diaries = new ArrayList<>();
+    List<GradeEntry> grades = new ArrayList<>();
+
+    long taskSeq = 1;
+    long scheduleSeq = 1;
+    long friendSeq = 1;
+    long diarySeq = 1;
+    long gradeSeq = 1;
+}
+```
+
+여기서 볼 수 있는 특징:
+
+### 1) 모든 데이터(Task, Friend, Diary…)가 Java 객체로 메모리에 저장됨
+
+- ArrayList에 보관
+
+- DAO는 이 ArrayList를 직접 조작
+
+- 조회도 메모리에서 Linear scan
+→ 즉, 실행 중 데이터는 전부 메모리에서 작동
+
+### 2) 디스크는 단지 “영속 저장 파일” 역할만 함
+
+LocalDatabaseManager.save()는 애플리케이션 종료 시 또는 CRUD 시
+```
+ObjectOutputStream → 파일 저장
+```
+
+LocalDatabaseManager.load()는 시작 시
+```
+ObjectInputStream → 파일 읽어서 LocalStore 객체로 로드
+```
+
+
+즉,
+
+- 실행 중: 메모리에서 동작 = 메모리 DB
+
+- 종료/시작 사이: 파일로 저장 = 단순 파일 기반 영속성
+
+형식적으로 보면 LocalStore는:
+
+“실행 중에는 메모리 DB처럼 동작하고,
+종료 시 파일로 스냅샷을 저장하는 방식의 in-memory database”
+
+라고 할 수 있음.
