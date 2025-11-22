@@ -118,6 +118,22 @@ View는 오직 ViewModel 메서드만 호출해야 한다.
 
 
 
+## **4. MVVM 구조를 도식화하면**
+```
+   [User]
+      ↓ (입력)
+   [View]  --- UI만 담당
+      ↓
+[ViewModel] --- 로직/검증/DAO호출
+      ↓
+   [Model] --- 데이터/저장 담당
+      ↑
+      └── DAO/Repository
+```
+
+
+
+
 ## **5. 실전 예제 (CampusPlannerConsole 기반)**
 
 ### (1) Model
@@ -135,3 +151,30 @@ public class Friend {
     public String getName() { return name; }
 }
 ```
+
+
+### (2) DAO (데이터 저장/조회만 담당)
+```
+public class FriendDAO {
+
+    private final Map<String, Friend> storage = new HashMap<>();
+
+    public boolean exists(String uid) {
+        return storage.containsKey(uid);
+    }
+
+    public void save(Friend f) { storage.put(f.getUid(), f); }
+
+    public void delete(String uid) { storage.remove(uid); }
+
+    public List<Friend> findAll() {
+        return new ArrayList<>(storage.values());
+    }
+}
+```
+<br>DAO는 오직 저장소 역할만 한다.
+검증, 예외처리, 메시지 출력 → 모두 ViewModel 책임이다.
+
+
+###
+
