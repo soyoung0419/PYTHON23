@@ -11,7 +11,7 @@ ViewModel 패턴(MVVM)에 대한 설명과 역할, 실제 코드예시를 알려
 
 아래에서 **MVVM(ViewModel 패턴)**을 “왜 쓰는지 → 어떻게 구성되는지 → 실제 코드에서는 어떻게 구현하는지” 순서로 완전 정리해줄게.
 
-### *1. MVVM(ViewModel 패턴)이란?*
+## **1. MVVM(ViewModel 패턴)이란?**
 
 MVVM(Model–View–ViewModel)은 **UI(View)**와 **비즈니스 로직(Model)**을 확실하게 분리하기 위해 **중간층(ViewModel)**을 둔 아키텍처 패턴이다.
 
