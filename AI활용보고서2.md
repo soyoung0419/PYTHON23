@@ -25,7 +25,7 @@ MVVM(Model–View–ViewModel)은 **UI(View)**와 **비즈니스 로직(Model)**
 
 
 
-<br> 2. 왜 MVVM이 필요한가? (근본적인 목적)
+## **2. 왜 MVVM이 필요한가? (근본적인 목적)**
 
 ① UI와 로직 분리 → 유지보수성 극대화
 
