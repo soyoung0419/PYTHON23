@@ -115,3 +115,23 @@ View는 오직 ViewModel 메서드만 호출해야 한다.
 ✔ D. 상태 저장 (Android에서는 LiveData, StateFlow 사용)
 
 - UI에서 자동 반응 → ViewModel은 UI 코드를 전혀 몰라도 됨
+
+
+
+## **5. 실전 예제 (CampusPlannerConsole 기반)**
+
+### (1) Model
+```
+public class Friend {
+    private final String uid;
+    private final String name;
+
+    public Friend(String uid, String name) {
+        this.uid = uid;
+        this.name = name;
+    }
+
+    public String getUid() { return uid; }
+    public String getName() { return name; }
+}
+```
