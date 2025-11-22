@@ -176,5 +176,262 @@ public class FriendDAO {
 검증, 예외처리, 메시지 출력 → 모두 ViewModel 책임이다.
 
 
-###
+### (3) ViewModel (핵심!)
+```
+public class FriendViewModel {
+
+    private final FriendDAO dao;
+
+    public FriendViewModel(FriendDAO dao) {
+        this.dao = dao;
+    }
+
+    public String addFriend(String uid, String name) {
+
+        // 1. 입력 검증
+        if (uid == null || uid.isBlank())
+            return "❌ UID를 입력하세요.";
+
+        if (name == null || name.isBlank())
+            return "❌ 이름을 입력하세요.";
+
+        // 2. 중복 UID 검사 (DAO 호출)
+        if (dao.exists(uid))
+            return "❌ 이미 존재하는 UID입니다.";
+
+        // 3. 정상 저장
+        dao.save(new Friend(uid, name));
+        return "✔ 친구 추가 완료.";
+    }
+
+    public String deleteFriend(String uid) {
+        if (!dao.exists(uid))
+            return "❌ 존재하지 않는 UID입니다.";
+
+        dao.delete(uid);
+        return "✔ 삭제되었습니다.";
+    }
+
+    public List<Friend> listFriends() {
+        return dao.findAll();
+    }
+}
+```
+
+ViewModel은 DAO를 호출하지만 UI는 DAO를 직접 호출할 수 없음.
+모든 보험, 필터, 보안, 검증 로직이 여기 모인다.
+
+
+### (4) View (콘솔 UI)
+
+```
+public class FriendUI {
+
+    private final FriendViewModel vm;
+    private final Scanner sc = new Scanner(System.in);
+
+    public FriendUI(FriendViewModel vm) {
+        this.vm = vm;
+    }
+
+    public void start() {
+        while (true) {
+            System.out.println("\n1. 추가  2. 목록  3. 삭제  0. 종료");
+            String sel = sc.nextLine();
+
+            switch (sel) {
+                case "1" -> addFriend();
+                case "2" -> listFriends();
+                case "3" -> deleteFriend();
+                case "0" -> { return; }
+            }
+        }
+    }
+
+    private void addFriend() {
+        System.out.print("UID: ");
+        String uid = sc.nextLine();
+        System.out.print("이름: ");
+        String name = sc.nextLine();
+
+        System.out.println(vm.addFriend(uid, name));
+    }
+
+    private void listFriends() {
+        for (Friend f : vm.listFriends()) {
+            System.out.println(f.getUid() + " - " + f.getName());
+        }
+    }
+
+    private void deleteFriend() {
+        System.out.print("삭제할 UID: ");
+        System.out.println(vm.deleteFriend(sc.nextLine()));
+    }
+}
+```
+
+View는
+- 출력만
+- 입력만
+하고 나머지는 전부 ViewModel이 처리한다.
+
+
+## 6. Android에서의 MVVM 예시 
+
+### (1)ViewModel
+```
+class LoginViewModel : ViewModel() {
+
+    val loginResult = MutableLiveData<String>()
+
+    fun login(id: String, pw: String) {
+        if (id.isBlank() || pw.isBlank()) {
+            loginResult.value = "아이디/비밀번호를 입력하세요."
+            return
+        }
+
+        // Firebase Auth 호출 가능
+        loginResult.value = "로그인 성공"
+    }
+}
+```
+
+### (2) View(Activity)
+
+```
+class LoginActivity : AppCompatActivity() {
+
+    private val vm: LoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        vm.loginResult.observe(this) { msg ->
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnLogin.setOnClickListener {
+            vm.login(
+                binding.etId.text.toString(),
+                binding.etPw.text.toString()
+            )
+        }
+    }
+}
+```
+
+
+### (3) View(Activity)
+```
+class LoginActivity : AppCompatActivity() {
+
+    private val vm: LoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        vm.loginResult.observe(this) { msg ->
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnLogin.setOnClickListener {
+            vm.login(
+                binding.etId.text.toString(),
+                binding.etPw.text.toString()
+            )
+        }
+    }
+}
+```
+
+Activity는
+- DB 호출 안 함
+- 검증 안 함
+- 비즈니스 로직 없음
+→ ViewModel이 결과를 LiveData로 넘기면 UI는 자동업데이트
+
+
+
+## **7. MVVM의 심층 내부 원리**
+### 1) ViewModel은 상태 관리자
+
+UI가 회전해도(Activity 재생성) 데이터가 유지됨
+(특히 안드로이드에서 중요)
+
+### 2) View는 절대 Model을 직접 건드리지 않음
+
+UI와 데이터 저장소 간에 어떤 연결도 존재하면 안 됨.
+이것이 MVC 대비 MVVM의 가장 강력한 장점.
+
+### 3) ViewModel에서는 이벤트를 상태(State)로 변환
+
+View는 상태 변화만 관찰
+
+### 4) Repository 패턴과 결합하면 확장성이 폭발적으로 증가
+
+Android 실무에서는
+ViewModel ↔ Repository ↔ Remote(API), Local(Room)
+구조로 발전한다.
+
+
+
+## **8. MVVM 단위 테스트 예시**
+
+### ViewModel을 테스트하는 경우:
+```
+@Test
+public void testAddFriend() {
+    FriendDAO dao = new FriendDAO();
+    FriendViewModel vm = new FriendViewModel(dao);
+
+    String result = vm.addFriend("u1", "아무개");
+
+    assertEquals("✔ 친구 추가 완료.", result);
+    assertTrue(dao.exists("u1"));
+}
+```
+
+View 없이도 모든 기능을 검증할 수 있다 → MVVM의 핵심 장점.
+
+
+
+
+## **9. 실무에서 MVVM 사용할 때 팁**
+
+- 오류/예외는 ViewModel에서 메시지 형태로 반환
+
+UI는 메시지를 그대로 보여주면 됨
+
+- ViewModel을 '스마트', View는 '멍청하게'
+
+View = 바보
+
+ViewModel = 천재
+구조가 유지될수록 아키텍처 품질은 올라간다.
+
+- DAO는 절대 검증 로직 넣지 말 것
+
+DAO = 저장만 담당하는 계층
+ViewModel = 논리적 판단 담당 계층
+역할 섞이면 유지보수성 박살남
+
+- UI 종류를 바꿀 수 있는 아키텍처 만들기
+
+Console → Swing → Android → Web
+View만 바꾸면 나머지는 재사용 가능
+
+
+
+## **결론 요약**
+
+ViewModel 패턴(MVVM)은 UI와 비즈니스 로직을 완전히 분리하여
+테스트, 유지보수, 확장성을 극대화하는 구조이다.
+
+### 구성 요소 역할 정리:
+| 계층 | 역할 |
+|------|------|
+| **Model** | 데이터/비즈니스 로직 |
+| **DAO/Repository** | 저장소 제어 |
+| **ViewModel** | 검증 + 로직 + DAO 호출 |
+| **View** | UI 처리 |
+
+너처럼 CampusPlanner, Android 앱, 콘솔 기반 프로젝트, UI/백엔드 분리 과제를 하는 학생에게 가장 적합한 아키텍처야.
 
