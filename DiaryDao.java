@@ -11,7 +11,7 @@ public class DiaryDao implements Crud<Diary> {
         this.db = db;
     }
 
-    // ───────────────────────────────────────
+    // ───────────────────────────────────────/
     // Diary 생성
     // ───────────────────────────────────────
     public Diary addNew(LocalDate date, String text, String imagePath) {
